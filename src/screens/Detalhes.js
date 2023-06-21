@@ -5,14 +5,14 @@ import {
   TouchableOpacity,
   ScrollView,
   ImageBackground,
-  Image,
 } from "react-native";
-import { Ionicons, FontAwesome, AntDesign } from "@expo/vector-icons";
+import { Ionicons, FontAwesome } from "@expo/vector-icons";
+import { Video, ResizeMode } from "expo-av";
 
 export default function Detalhes({ navigation: { navigate, goBack } }) {
   return (
     <View style={styles.container}>
-      <ScrollView style={{ paddingHorizontal: 20, marginBottom: 70 }}>
+      <ScrollView style={{ paddingHorizontal: 20 }}>
         <View
           style={{
             alignItems: "center",
@@ -49,107 +49,57 @@ export default function Detalhes({ navigation: { navigate, goBack } }) {
           </Text>
         </View>
 
-        <ImageBackground
-          source={require("../../assets/background.jpg")}
-          style={{
-            height: 250,
-            marginVertical: 16,
-            borderRadius: 10,
-            overflow: "hidden",
-            justifyContent: "space-between",
-            paddingVertical: 12,
-          }}
-        >
-          <View
+        <View style={{ borderRadius: 10 }}>
+          <Video
             style={{
-              paddingHorizontal: 12,
-              alignItems: "flex-end",
-              borderWidth: 0,
-            }}
-          >
-            <FontAwesome name="bookmark-o" size={24} color="#fff" />
-          </View>
-
-          <View
-            style={{
+              height: 250,
+              marginVertical: 16,
               borderRadius: 10,
               overflow: "hidden",
-              marginHorizontal: 18,
-              backgroundColor: "#fff",
-              opacity: 0.8,
-              padding: 8,
+              justifyContent: "space-between",
+              paddingVertical: 12,
+              backgroundColor: "red",
             }}
-          >
-            <View
-              style={{
-                padding: 10,
-                flexDirection: "row",
-                justifyContent: "space-between",
-              }}
-            >
-              <View style={{ flexDirection: "row", alignItems: "center" }}>
-                <Text
-                  style={{
-                    color: "#111",
-                    fontSize: 15,
-                    fontWeight: 500,
-                  }}
-                >
-                  Barbell Curl
-                </Text>
-              </View>
-              <View style={{ flexDirection: "row", alignItems: "center" }}>
-                <Text
-                  style={{
-                    color: "#111",
-                    fontSize: 15,
-                    fontWeight: 500,
-                  }}
-                >
-                  Barbell Curl
-                </Text>
-              </View>
-              <View style={{ flexDirection: "row", alignItems: "center" }}>
-                <Text
-                  style={{
-                    color: "#111",
-                    fontSize: 15,
-                    fontWeight: 500,
-                  }}
-                >
-                  Beginner
-                </Text>
-              </View>
-            </View>
-          </View>
-        </ImageBackground>
+            source={{
+              uri: "https://media.musclewiki.com/media/uploads/videos/branded/male-barbell-reverse-curl-front.mp4#t=0.1",
+            }}
+            useNativeControls
+            resizeMode={ResizeMode.COVER}
+            isLooping
+          />
+        </View>
 
         <View
           style={{
             flexDirection: "row",
             alignItems: "center",
             justifyContent: "space-between",
+            borderBottomWidth: 0.3,
+            borderBottomColor: "#000",
+            paddingBottom: 10,
           }}
         >
           <Text
             style={{
               color: "#111",
-              fontSize: 25,
-              fontWeight: 500,
+              fontSize: 20,
+              fontWeight: 400,
             }}
           >
-            Barbell Curl
+            Category
           </Text>
 
-          <View style={{ flexDirection: "row", alignItems: "center" }}>
+          <View style={{flexDirection: "row", justifyContent:"space-between", alignItems: "center"}}>
+            <Ionicons name="barbell-sharp" size={22} color="#C12323" />
             <Text
               style={{
                 color: "#111",
-                fontSize: 15,
-                fontWeight: 500,
+                fontSize: 20,
+                fontWeight: 400,
+                marginLeft: 4
               }}
             >
-              test
+              Beginner
             </Text>
           </View>
         </View>
@@ -157,8 +107,8 @@ export default function Detalhes({ navigation: { navigate, goBack } }) {
         <Text
           style={{
             color: "#111",
-            fontSize: 20,
-            fontWeight: 400,
+            fontSize: 22,
+            fontWeight: 500,
             marginTop: 16,
           }}
         >
@@ -168,17 +118,16 @@ export default function Detalhes({ navigation: { navigate, goBack } }) {
         <Text style={{ color: "#111", marginTop: 4, fontSize: 16 }}>
           Lorem Ipsum is simply dummy text of the printing and typesetting
           industry. Lorem Ipsum has been the industry's standard dummy text ever
-          since the 1500s, when an unknown printer took a galley of type and
-          scrambled it to make a type specimen book. It has survived not only
-          five centuries, but also the leap into electronic typesetting,
-          remaining essentially unchanged.
+          since the 1500s.
         </Text>
 
         <Text
           style={{
             color: "#111",
-            marginTop: 20,
-            fontSize: 16,
+            marginTop: 30,
+            marginLeft: 4,
+            marginBottom: 4,
+            fontSize: 18,
             fontWeight: 500,
           }}
         >
@@ -190,21 +139,28 @@ export default function Detalhes({ navigation: { navigate, goBack } }) {
             style={{
               backgroundColor: "#ffff",
               padding: 10,
-              marginRight: 15,
+              marginRight: 10,
               marginBottom: 10,
               borderRadius: 10,
               flexDirection: "row",
             }}
           >
-            <View style={{ marginLeft: 10, justifyContent: "space-between" }}> 
-              <View style={{ flexDirection: "row", alignItems: "center", marginBottom: 8 }}>
+            <View style={{ marginLeft: 10, justifyContent: "space-between" }}>
+              <View
+                style={{
+                  flexDirection: "row",
+                  alignItems: "center",
+                  marginBottom: 8,
+                }}
+              >
                 <Ionicons name="barbell" size={24} color="black" />
-                <Text style={{ fontSize: 18, marginLeft: 8 }}>Step {index + 1}</Text>
+                <Text style={{ fontSize: 18, marginLeft: 8 }}>
+                  Step {index + 1}
+                </Text>
               </View>
 
               <View style={{ flexDirection: "row", alignItems: "center" }}>
                 <Text style={{ color: "#111", fontSize: 14 }}>
-                  {" "}
                   Lorem Ipsum is simply dummy text of the printing and
                   typesetting industry. Lorem Ipsum has been the industry's
                   standard dummy text ever since the 1500s

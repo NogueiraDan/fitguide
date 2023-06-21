@@ -5,18 +5,68 @@ import {
   TouchableOpacity,
   ScrollView,
   Image,
+  Pressable,
+  Modal,
 } from "react-native";
+import { useState } from "react";
 import { useNavigation } from "@react-navigation/native";
-import { AntDesign } from "@expo/vector-icons";
+import { AntDesign, FontAwesome } from "@expo/vector-icons";
 import CategoryList from "../../components/CategoryList";
 
 export default function Home() {
   const navigation = useNavigation();
+  const [isModalVisible, setIsModalVisible] = useState(false);
+  const onModalClose = () => {
+    setIsModalVisible(false);
+  };
 
   return (
     <View style={styles.container}>
       <View style={styles.header}>
         <Text style={styles.headerTitle}>Bem vindo</Text>
+        <TouchableOpacity onPress={()=>setIsModalVisible(true)}>
+          <FontAwesome name="search" size={24} color="#fff" />
+        </TouchableOpacity>
+
+        <Modal
+          animationType="slide"
+          transparent={true}
+          visible={isModalVisible}
+        >
+          <View
+            style={{
+              height: "100%",
+              width: "100%",
+              backgroundColor: "#fff",
+            }}
+          >
+            <View
+              style={{
+                height: "10%",
+                backgroundColor: "#C12323",
+                opacity: 0.8,
+                paddingHorizontal: 20,
+                flexDirection: "row",
+                alignItems: "center",
+                justifyContent: "space-between",
+              }}
+            >
+              <Text
+                style={{
+                  color: "#fff",
+                  fontSize: 18,
+                  fontWeight: 500
+                }}
+              >
+                Encontre um exercicio
+              </Text>
+              <Pressable onPress={onModalClose}>
+                <FontAwesome name="close" size={24} color="#fff" />
+              </Pressable>
+            </View>
+            <Text>Aqui vem o conteudo</Text>
+          </View>
+        </Modal>
       </View>
 
       <ScrollView showsVerticalScrollIndicator={true}>
@@ -25,10 +75,10 @@ export default function Home() {
           style={{
             flexDirection: "row",
             justifyContent: "space-between",
-            marginHorizontal: 20,
+            marginHorizontal: 10,
           }}
         >
-          <Text style={{ fontSize: 16 }}>Mais acessados</Text>
+          <Text style={{ fontSize: 16, marginTop: 8 }}>Mais acessados</Text>
           <TouchableOpacity>
             <Text style={{ fontSize: 16, color: "#C12323" }}>Veja mais</Text>
           </TouchableOpacity>
@@ -40,6 +90,7 @@ export default function Home() {
           decelerationRate={"fast"}
           pagingEnabled
           snapToInterval={290}
+          style={{ marginTop: 4, marginBottom: 20 }}
         >
           {[1, 1, 1, 1, 1, 1].map((workout, index) => (
             <TouchableOpacity
@@ -81,7 +132,7 @@ export default function Home() {
             marginVertical: 10,
           }}
         >
-          <Text style={{ fontSize: 16 }}>Em Alta!</Text>
+          <Text style={{ fontSize: 16 }}>Mais avaliados</Text>
           <TouchableOpacity>
             <Text style={{ fontSize: 16, color: "#C12323" }}>Veja mais</Text>
           </TouchableOpacity>
@@ -92,7 +143,7 @@ export default function Home() {
             style={{
               backgroundColor: "#ffff",
               padding: 10,
-              marginRight: 15,
+              marginHorizontal: 10,
               marginBottom: 10,
               borderRadius: 10,
               flexDirection: "row",
@@ -132,14 +183,14 @@ const styles = StyleSheet.create({
   },
   header: {
     paddingTop: 30,
-    height: 100,
+    height: 120,
     width: "100%",
     backgroundColor: "#C12323",
     flexDirection: "row",
-    justifyContent: "center",
+    justifyContent: "space-between",
     alignItems: "center",
-    paddingStart: 10,
-    paddingEnd: 10,
+    paddingStart: 20,
+    paddingEnd: 20,
   },
   headerTitle: {
     fontSize: 24,
