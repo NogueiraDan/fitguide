@@ -2,9 +2,7 @@ import { StyleSheet } from "react-native";
 import "react-native-gesture-handler";
 import { NavigationContainer } from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
-import Login from "./src/screens/Login";
-import Cadastro from "./src/screens/Cadastro";
-import AppTabs from "./src/routes/appTabsRoutes";
+import StackRoutes from "./src/routes/appStacksRoutes";
 
 const Stack = createNativeStackNavigator();
 
@@ -13,25 +11,11 @@ export default function App() {
     <NavigationContainer>
       <Stack.Navigator>
         <Stack.Screen
-          name="Login"
-          component={Login}
+          name="Stack"
+          component={StackRoutes}
           options={{
-            title: "Login",
-            headerShown: false
-          }}
-        />
-        <Stack.Screen
-          name="Cadastro"
-          component={Cadastro}
-          options={{
-            title: "Cadastro",
-          }}
-        />
-        <Stack.Screen
-          name="AppTabs"
-          component={AppTabs}
-          options={{
-            headerShown: false
+            title: "Stack",
+            headerShown: false,
           }}
         />
       </Stack.Navigator>
